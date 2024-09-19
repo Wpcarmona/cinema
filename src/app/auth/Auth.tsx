@@ -43,8 +43,8 @@ const Auth: React.FC<AuthProps> = ({ onAuthSuccess }) => {
 
       localStorage.setItem("token", response.header[0].token);
       localStorage.setItem("user", JSON.stringify(response.body[0]));
-
       onAuthSuccess();
+      window.location.reload();
     } catch (error) {
       console.error("Error during authentication:", error);
     } finally {

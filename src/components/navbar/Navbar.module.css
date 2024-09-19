@@ -7,6 +7,7 @@
   background-color: #000000;
   opacity: 0.9;
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0 80%);
+  position: relative; /* Añadir posición relativa para que el menú desplegable se posicione correctamente */
 }
 
 .icon {
@@ -24,25 +25,6 @@
   gap: 20px;
 }
 
-.contentTitle {
-  display: flex;
-  flex-direction: column;
-}
-
-.logotitle {
-  font-family: "Montserrat", sans-serif;
-  font-size: 25px;
-  font-weight: 700;
-  line-height: 28px;
-  letter-spacing: 0.15em;
-  text-align: left;
-}
-
-.logo {
-  width: 50px;
-  height: auto;
-}
-
 .link {
   color: #ffffff;
   text-decoration: none;
@@ -50,27 +32,62 @@
 }
 
 .userIcon {
+  position: relative; /* Añadir posición relativa para el menú desplegable */
   color: #ffffff;
-  font-size: 22px;
 }
 
-.greeting {
-  margin-right: 20px;
+.userButton {
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 22px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.userDropdown {
+  position: relative;
+}
+
+.dropdownMenu {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 100%; /* Colocar el menú justo debajo del botón */
+  right: 0; /* Alinear a la derecha del contenedor */
+  background-color: #333;
+  color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  list-style: none;
+  padding: 10px;
+  margin: 0;
+  z-index: 1000; /* Asegurarse de que el menú esté por encima de otros elementos */
+}
+
+.dropdownItem {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.dropdownItem:hover {
+  background-color: #444;
 }
 
 .menuButton {
-    background: none;
-    border: none;
-    color: #ffffff;
-    font-size: 24px;
-    cursor: pointer;
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+@media (min-width: 769px) {
+  .menuButton {
+    display: none;
   }
-  
-  @media (min-width: 769px) {
-    .menuButton {
-      display: none;
-    }
-  }
+}
 
 @media (max-width: 768px) {
   .navbar {

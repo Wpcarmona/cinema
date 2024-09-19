@@ -35,6 +35,7 @@
     display: flex;
     width: 100%;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .leftContent {
@@ -52,10 +53,10 @@
 }
 
 .trailerButton {
-    position: absolute;
+    width: 100%;
     bottom: 10px;
     left: 0;
-    background-color: #f0ad4e;
+    background-color: #F0B90B;
     color: #000;
     border: none;
     padding: 10px;
@@ -132,4 +133,27 @@
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+}
+
+@media (max-width: 425px) {
+    .content {
+        flex-direction: column;
+    }
+
+    .rightContent {
+        margin-left: 0;
+        margin-top: 20px;
+    }
+
+    .banner {
+        height: auto;
+    }
+
+    .coverImage {
+        width: 100%;
+    }
+
+    .title {
+        font-size: 1.5em;
+    }
 }

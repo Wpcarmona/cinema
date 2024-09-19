@@ -79,8 +79,10 @@ export const login = async (email: string, password: string): Promise<AuthRespon
 };
 
 export const createUser = async (data: CreateUserRequest): Promise<AuthResponse> => {
+  console.log(data)
   try {
     const response = await authApi.post('/usuarios', data);
+    console.log(response.data)
     return response.data;
   } catch (error) {
     console.error('Error creating user:', error);
@@ -98,7 +100,7 @@ export const logout = async (): Promise<void> => {
   try {
     const response = await authApi.post<LogoutResponse>('/auth/logout', {}, {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `${token}`,
       },
     });
 
@@ -124,7 +126,7 @@ export const getUsers = async (): Promise<UsersResponse> => {
   try {
     const response = await authApi.get('/cinema/usuarios', {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `${token}`,
       },
     });
     return response.data;
@@ -144,7 +146,7 @@ export const getUserById = async (userId: string): Promise<UserResponse> => {
   try {
     const response = await authApi.get<UserResponse>(`/usuarios/${userId}`, {
       headers: {
-        'Authorization': `Bearer ${token}`,
+        'Authorization': `${token}`,
       },
     });
     
@@ -166,7 +168,7 @@ export const updateUser = async (id: string, data: Partial<UserUpdateRequest>): 
   try {
     const response = await authApi.put<UserUpdateResponse>(`/usuarios/${id}`, data, {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `${token}`,
       },
     });
     return response.data;
@@ -176,19 +178,31 @@ export const updateUser = async (id: string, data: Partial<UserUpdateRequest>): 
   }
 };
 
-export const deleteUser = async (id: string): Promise<UserDeleteResponse> => {
+export const deleteUser = async (): Promise<UserDeleteResponse> => {
   const token = localStorage.getItem('token');
+  const user = localStorage.getItem('user');
 
   if (!token) {
     throw new Error('No token found in localStorage');
   }
 
+  if (!user) {
+    throw new Error('No user found in localStorage');
+  }
+  
+
   try {
-    const response = await authApi.delete<UserDeleteResponse>(`/usuarios/${id}`, {
+    const response = await authApi.delete<UserDeleteResponse>(`/usuarios/${JSON.parse(user).uid}`, {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `${token}`,
       },
     });
+   
+
+    if (response.data.header[0].code === 200) {
+      localStorage.removeItem('user');
+      localStorage.removeItem('token');
+    }
     return response.data;
   } catch (error) {
     console.error('Error deleting user:', error);
@@ -196,17 +210,28 @@ export const deleteUser = async (id: string): Promise<UserDeleteResponse> => {
   }
 };
 
-export const addFavorite = async (data: AddFavoriteRequest): Promise<AddFavoriteResponse> => {
+export const addFavorite = async (idMovie:string): Promise<AddFavoriteResponse> => {
   const token = localStorage.getItem('token');
+  const user = localStorage.getItem('user');
 
   if (!token) {
     throw new Error('No token found in localStorage');
   }
 
+  if (!user) {
+    throw new Error('No user found in localStorage');
+  }
+
+  const data: AddFavoriteRequest = {
+    userId: JSON.parse(user).uid,
+    favoriteId: idMovie,
+    type: 'movie',
+  }
+
   try {
     const response = await authApi.post<AddFavoriteResponse>('/favorite', data, {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `${token}`,
       },
     });
     return response.data;
@@ -233,7 +258,7 @@ export const getFavoritesByUser = async (): Promise<GetFavoritesResponse> => {
   try {
     const response = await authApi.get<GetFavoritesResponse>(`/favorite/usuario/${userId}`, {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `${token}`,
       },
     });
     return response.data;
@@ -254,7 +279,7 @@ export const deleteFavoriteById = async (favoriteId: string): Promise<DeleteFavo
   try {
     const response = await authApi.delete<DeleteFavoriteResponse>(`/favorite/${favoriteId}`, {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `${token}`,
       },
     });
     return response.data;

@@ -1,5 +1,5 @@
 export interface AddFavoriteRequest {
-  userId: string;
+  userId: string ;
   favoriteId: string;
   type: string;
 }

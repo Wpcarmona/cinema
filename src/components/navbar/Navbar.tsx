@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./Navbar.module.css";
 import Sidebar from "../Sidebar/Sidebar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser, faBars } from "@fortawesome/free-solid-svg-icons"; // faBars para el menú
+import { faUser, faBars } from "@fortawesome/free-solid-svg-icons"; 
 import useMedia from 'use-media';
 
 const Navbar: React.FC = () => {
@@ -43,7 +43,6 @@ const Navbar: React.FC = () => {
       <div className={styles.userIcon}>
         {firstName ? (
           <div>
-            <span className={styles.greeting}>Hola, {firstName}</span>
             <FontAwesomeIcon icon={faUser} />
           </div>
         ) : (

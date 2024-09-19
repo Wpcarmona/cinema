@@ -7,7 +7,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faHeart } from "@fortawesome/free-solid-svg-icons";
 import { getMoviesByPath } from "../../utils/api";
 import RecomendationCard from "../../components/recomendationCard/RecomendationCard";
-import Image from "next/image"; // Importa el componente de Next.js
 
 interface MovieDetailProps {
   movie: Movie;
@@ -50,8 +49,9 @@ const MovieDetail: React.FC<MovieDetailProps> = ({ movie, onBack }) => {
                 alt={movie.title}
                 className={styles.coverImage}
               />
-              <button className={styles.trailerButton}>Official Trailer</button>
+              
             </div>
+            <button className={styles.trailerButton}>Official Trailer</button>
           </div>
           <div className={styles.rightContent}>
             <h1 className={styles.title}>{movie.title}</h1>

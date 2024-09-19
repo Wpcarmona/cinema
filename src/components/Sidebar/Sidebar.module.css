@@ -2,7 +2,7 @@
     position: fixed;
     top: 0;
     left: -100%; /* Mueve el sidebar fuera de la vista a la izquierda */
-    width: 50%;
+    width: 70%;
     height: 100%;
     background-color: #262626;
     transition: left 0.3s ease-in-out; /* Cambia la transición a 'left' */
@@ -55,4 +55,21 @@
     border-radius: 5px;
     border: none;
     padding-left: 10px;
+}
+
+.options{
+    margin-top: 10px;
+}
+.button{
+    width: 100%;
+    bottom: 10px;
+    left: 0;
+    background-color: #F0B90B;
+    color: #000;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
