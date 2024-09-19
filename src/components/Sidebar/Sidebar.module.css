@@ -2,7 +2,7 @@
     position: fixed;
     top: 0;
     left: -100%;
-    width: 70%;
+    width: 50%;
     height: 100%;
     background-color: #262626;
     transition: left 0.3s ease-in-out;

@@ -104,7 +104,7 @@
 }
 
 .imageLogin {
-  background-image: url('../../../public/images/image-login.svg');
+  background-image: url('/images/image-login.svg');
   width: 100%;
   height: 100vh;
   background-size: contain;
@@ -113,7 +113,7 @@
 }
 
 .imageRegister {
-  background-image: url('../../../public/images/image-register.svg');
+  background-image: url('/images/image-register.svg');
   width: 100%;
   height: 100vh;
   background-size: contain;
