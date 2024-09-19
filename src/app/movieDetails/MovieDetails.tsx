@@ -6,7 +6,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faHeart } from "@fortawesome/free-solid-svg-icons";
 import { getMoviesByPath } from "../../utils/api";
 import RecomendationCard from "../../components/recomendationCard/RecomendationCard";
-import Image from "next/image";
 
 interface MovieDetailProps {
   movie: Movie;
@@ -44,7 +43,7 @@ const MovieDetail: React.FC<MovieDetailProps> = ({ movie, onBack }) => {
         <div className={styles.content}>
           <div className={styles.leftContent}>
             <div className={styles.coverContainer}>
-              <Image
+              <img
                 src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                 alt={movie.title}
                 className={styles.coverImage}

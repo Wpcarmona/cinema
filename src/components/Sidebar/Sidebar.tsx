@@ -1,10 +1,33 @@
-
-import React from "react";
+'use client';
+import React, { useState, useEffect } from "react";
 import styles from "./Sidebar.module.css"; 
 
-const Sidebar: React.FC = () => {
+interface SidebarProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
+  const handleOutsideClick = (event: MouseEvent) => {
+    const sidebarElement = document.getElementById("sidebar");
+    if (sidebarElement && !sidebarElement.contains(event.target as Node)) {
+      onClose();
+    }
+  };
+
+  useEffect(() => {
+    if (isOpen) {
+      document.addEventListener("mousedown", handleOutsideClick);
+    } else {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, [isOpen]);
+
   return (
-    <aside className={styles.sidebar}>
+    <aside id="sidebar" className={`${styles.sidebar} ${isOpen ? styles.open : ""}`}>
       <div className={styles.content}>
         <div className={styles.title}>
           <label>Search</label>
@@ -16,7 +39,7 @@ const Sidebar: React.FC = () => {
           <label>Genres</label>
         </div>
         <div>
-          <select className={styles.genreSelect}>
+        <select className={styles.genreSelect}>
             <option value="action">Action</option>
             <option value="adventure">Adventure</option>
             <option value="animation">Animation</option>

@@ -77,3 +77,23 @@
     font-size: 30px;
     color: #ffffff;
   }
+
+  @media (min-width: 42px) and (max-width: 768){
+    .title {
+      font-size: 24px; 
+    }
+  
+    .description {
+      font-size: 15px; 
+    }
+
+  }
+  @media (max-width: 425px) {
+    .title {
+      font-size: 24px; 
+    }
+  
+    .description {
+      font-size: 10px; 
+    }
+  }

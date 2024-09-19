@@ -12,7 +12,7 @@ export const metadata = {
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
-    <html lang="es">
+    <html lang="es" className={styles.bodyhtml}>
       <body className={styles.body}>
         <header className={styles.navbar}>
           <Navbar />

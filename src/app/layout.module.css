@@ -13,6 +13,10 @@
   .contentMain{
     width: fill;
   }
+
+  .bodyhtml{
+    overflow-x: hidden;
+  }
   
 
   .body{
