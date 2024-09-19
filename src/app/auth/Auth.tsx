@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./Auth.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
@@ -13,6 +13,12 @@ interface AuthProps {
 const Auth: React.FC<AuthProps> = ({ onAuthSuccess }) => {
   const [isRegister, setIsRegister] = useState<boolean>(true);
   const [loading, setLoading] = useState<boolean>(false);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    setIsAuthenticated(!!token);
+  }, []);
 
   const handleToggle = () => {
     setIsRegister(!isRegister);
@@ -51,6 +57,10 @@ const Auth: React.FC<AuthProps> = ({ onAuthSuccess }) => {
       setLoading(false);
     }
   };
+
+  if (isAuthenticated) {
+    return null; // Hide the Auth component if the user is already authenticated
+  }
 
   return (
     <div className={styles.container}>

@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useEffect, useState } from "react";
 import styles from "./Navbar.module.css";
 import Sidebar from "../Sidebar/Sidebar";
@@ -9,6 +10,7 @@ import useMedia from "use-media";
 const Navbar: React.FC = () => {
   const [firstName, setFirstName] = useState<string | null>(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -22,9 +24,15 @@ const Navbar: React.FC = () => {
 
   useEffect(() => {
     const user = localStorage.getItem("user");
-    if (user) {
+    const token = localStorage.getItem("token");
+
+    if (user && token) {
       const userData = JSON.parse(user);
       setFirstName(userData.firstName || null);
+      setIsAuthenticated(true);
+    } else {
+      setIsAuthenticated(false);
+      setFirstName(null);
     }
   }, []);
 
@@ -37,13 +45,20 @@ const Navbar: React.FC = () => {
         <div className={styles.icon}></div>{" "}
         {/* Centrado en pantallas pequeñas */}
         <div className={styles.logoAndLinks}>
-          <span className={styles.link}>Popular</span>
-          <span className={styles.link}>Favorites</span>
+          {isAuthenticated ? (
+            <>
+              <span className={styles.link}>Popular</span>
+              <span className={styles.link}>Favorites</span>
+            </>
+          ) : (
+            <span className={styles.link}>Home</span>
+          )}
         </div>
         <div className={styles.userIcon}>
           {firstName ? (
             <div>
               <FontAwesomeIcon icon={faUser} />
+              <span className={styles.userName}>Hola, {firstName}</span>
             </div>
           ) : (
             <FontAwesomeIcon icon={faUser} />

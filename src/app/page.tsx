@@ -30,8 +30,11 @@ export default function Home() {
 
   return (
     <div>
-      {!isAuthenticated && <Auth onAuthSuccess={handleAuthSuccess} />}
-      <MovieListPage onMovieClick={(movie) => setSelectedMovie(movie)} />
+      {!isAuthenticated ? (
+        <Auth onAuthSuccess={handleAuthSuccess} />
+      ) : (
+        <MovieListPage onMovieClick={(movie) => setSelectedMovie(movie)} />
+      )}
     </div>
   );
 }

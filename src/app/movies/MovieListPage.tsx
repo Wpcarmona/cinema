@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useEffect, useState } from "react";
 import MovieCard from "../../components/movieCard/MovieCard";
 import { getMoviesByPath, addFavorite } from "../../utils/api";
@@ -22,12 +23,15 @@ const MovieListPage: React.FC<MovieListPageProps> = ({
   const [topRated, setTopRated] = useState<Movie[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
 
-  const token = localStorage.getItem("token");
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    setIsAuthenticated(!!token);
+  }, []);
 
   const handleFavoriteClick = async (movie: Movie) => {
-    console.log("hola");
-    if (!token) {
+    if (!isAuthenticated) {
       alert("Please log in to add favorites");
       return;
     }
@@ -37,32 +41,20 @@ const MovieListPage: React.FC<MovieListPageProps> = ({
       alert(`${movie.title} has been added to your favorites.`);
     } catch (error) {
       console.error("Error adding to favorites:", error);
-      alert(`${movie.title} has been added to your favorites.`);
+      alert(`Failed to add ${movie.title} to favorites.`);
     }
   };
 
   useEffect(() => {
     const fetchMovies = async () => {
       try {
-        const movieResponse: MovieResponse = await getMoviesByPath(
-          page,
-          "popular"
-        );
+        const movieResponse: MovieResponse = await getMoviesByPath(page, "popular");
         setMovies(movieResponse.results);
-        const upcommingResponse: MovieResponse = await getMoviesByPath(
-          page,
-          "now_playing"
-        );
+        const upcommingResponse: MovieResponse = await getMoviesByPath(page, "now_playing");
         setUpcomming(upcommingResponse.results);
-        const nowPlayingResponse: MovieResponse = await getMoviesByPath(
-          page,
-          "upcoming"
-        );
+        const nowPlayingResponse: MovieResponse = await getMoviesByPath(page, "upcoming");
         setNowPlaying(nowPlayingResponse.results);
-        const topratedMovies: MovieResponse = await getMoviesByPath(
-          page,
-          "top_rated"
-        );
+        const topratedMovies: MovieResponse = await getMoviesByPath(page, "top_rated");
         setTopRated(topratedMovies.results);
       } catch (err) {
         setError("Error fetching movies");
@@ -77,6 +69,10 @@ const MovieListPage: React.FC<MovieListPageProps> = ({
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
+
+  if (!isAuthenticated) {
+    return <p>Please log in to view movies and add to favorites.</p>;
+  }
 
   return (
     <div>
@@ -108,7 +104,7 @@ const MovieListPage: React.FC<MovieListPageProps> = ({
           </div>
         </div>
         <div>
-          <label className={styles.titleName}>Upcomming</label>
+          <label className={styles.titleName}>Upcoming</label>
           <div className={styles.moviesContainer}>
             {upcomming.map((movie) => (
               <MovieCard
