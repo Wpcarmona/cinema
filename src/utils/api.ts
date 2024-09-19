@@ -112,73 +112,83 @@ export const createUser = async (
 };
 
 export const logout = async (): Promise<void> => {
-  const token = localStorage.getItem("token");
+  if (typeof window !== 'undefined') {
+    const token = localStorage.getItem("token");
 
-  if (!token) {
-    throw new Error("No token found in localStorage");
-  }
-
-  try {
-    const response = await authApi.post<LogoutResponse>(
-      "/auth/logout",
-      {},
-      {
-        headers: {
-          Authorization: `${token}`,
-        },
-      }
-    );
-
-    if (response.data.header[0].code === 200) {
-      localStorage.removeItem("user");
-      localStorage.removeItem("token");
-    } else {
-      console.error("Logout failed:", response.data.header[0].message);
+    if (!token) {
+      throw new Error("No token found in localStorage");
     }
-  } catch (error) {
-    console.error("Error during logout:", error);
-    throw error;
+
+    try {
+      const response = await authApi.post<LogoutResponse>(
+        "/auth/logout",
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (response.data.header[0].code === 200) {
+        localStorage.removeItem("user");
+        localStorage.removeItem("token");
+      } else {
+        console.error("Logout failed:", response.data.header[0].message);
+      }
+    } catch (error) {
+      console.error("Error during logout:", error);
+      throw error;
+    }
   }
 };
 
 export const getUsers = async (): Promise<UsersResponse> => {
-  const token = localStorage.getItem("token");
+  if (typeof window !== 'undefined') {
+    const token = localStorage.getItem("token");
 
-  if (!token) {
-    throw new Error("No token found in local storage");
-  }
+    if (!token) {
+      throw new Error("No token found in local storage");
+    }
 
-  try {
-    const response = await authApi.get("/cinema/usuarios", {
-      headers: {
-        Authorization: `${token}`,
-      },
-    });
-    return response.data;
-  } catch (error) {
-    console.error("Error fetching users:", error);
-    throw error;
+    try {
+      const response = await authApi.get("/cinema/usuarios", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching users:", error);
+      throw error;
+    }
+  } else {
+    throw new Error("Cannot access localStorage on the server side");
   }
 };
 
 export const getUserById = async (userId: string): Promise<UserResponse> => {
-  const token = localStorage.getItem("token");
+  if (typeof window !== 'undefined') {
+    const token = localStorage.getItem("token");
 
-  if (!token) {
-    throw new Error("No token found in localStorage");
-  }
+    if (!token) {
+      throw new Error("No token found in localStorage");
+    }
 
-  try {
-    const response = await authApi.get<UserResponse>(`/usuarios/${userId}`, {
-      headers: {
-        Authorization: `${token}`,
-      },
-    });
+    try {
+      const response = await authApi.get<UserResponse>(`/usuarios/${userId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
-    return response.data;
-  } catch (error) {
-    console.error("Error fetching user by ID:", error);
-    throw error;
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching user by ID:", error);
+      throw error;
+    }
+  } else {
+    throw new Error("Cannot access localStorage on the server side");
   }
 };
 
@@ -186,150 +196,170 @@ export const updateUser = async (
   id: string,
   data: Partial<UserUpdateRequest>
 ): Promise<UserUpdateResponse> => {
-  const token = localStorage.getItem("token");
+  if (typeof window !== 'undefined') {
+    const token = localStorage.getItem("token");
 
-  if (!token) {
-    throw new Error("No token found in localStorage");
-  }
+    if (!token) {
+      throw new Error("No token found in localStorage");
+    }
 
-  try {
-    const response = await authApi.put<UserUpdateResponse>(
-      `/usuarios/${id}`,
-      data,
-      {
-        headers: {
-          Authorization: `${token}`,
-        },
-      }
-    );
-    return response.data;
-  } catch (error) {
-    console.error("Error updating user:", error);
-    throw error;
+    try {
+      const response = await authApi.put<UserUpdateResponse>(
+        `/usuarios/${id}`,
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      console.error("Error updating user:", error);
+      throw error;
+    }
+  } else {
+    throw new Error("Cannot access localStorage on the server side");
   }
 };
 
 export const deleteUser = async (): Promise<UserDeleteResponse> => {
-  const token = localStorage.getItem("token");
-  const user = localStorage.getItem("user");
+  if (typeof window !== 'undefined') {
+    const token = localStorage.getItem("token");
+    const user = localStorage.getItem("user");
 
-  if (!token) {
-    throw new Error("No token found in localStorage");
-  }
-
-  if (!user) {
-    throw new Error("No user found in localStorage");
-  }
-
-  try {
-    const response = await authApi.delete<UserDeleteResponse>(
-      `/usuarios/${JSON.parse(user).uid}`,
-      {
-        headers: {
-          Authorization: `${token}`,
-        },
-      }
-    );
-
-    if (response.data.header[0].code === 200) {
-      localStorage.removeItem("user");
-      localStorage.removeItem("token");
+    if (!token) {
+      throw new Error("No token found in localStorage");
     }
-    return response.data;
-  } catch (error) {
-    console.error("Error deleting user:", error);
-    throw error;
+
+    if (!user) {
+      throw new Error("No user found in localStorage");
+    }
+
+    try {
+      const response = await authApi.delete<UserDeleteResponse>(
+        `/usuarios/${JSON.parse(user).uid}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (response.data.header[0].code === 200) {
+        localStorage.removeItem("user");
+        localStorage.removeItem("token");
+      }
+      return response.data;
+    } catch (error) {
+      console.error("Error deleting user:", error);
+      throw error;
+    }
+  } else {
+    throw new Error("Cannot access localStorage on the server side");
   }
 };
 
 export const addFavorite = async (
   idMovie: string
 ): Promise<AddFavoriteResponse> => {
-  const token = localStorage.getItem("token");
-  const user = localStorage.getItem("user");
+  if (typeof window !== 'undefined') {
+    const token = localStorage.getItem("token");
+    const user = localStorage.getItem("user");
 
-  if (!token) {
-    throw new Error("No token found in localStorage");
-  }
+    if (!token) {
+      throw new Error("No token found in localStorage");
+    }
 
-  if (!user) {
-    throw new Error("No user found in localStorage");
-  }
+    if (!user) {
+      throw new Error("No user found in localStorage");
+    }
 
-  const data: AddFavoriteRequest = {
-    userId: JSON.parse(user).uid,
-    favoriteId: idMovie,
-    type: "movie",
-  };
+    const data: AddFavoriteRequest = {
+      userId: JSON.parse(user).uid,
+      favoriteId: idMovie,
+      type: "movie",
+    };
 
-  try {
-    const response = await authApi.post<AddFavoriteResponse>(
-      "/favorite",
-      data,
-      {
-        headers: {
-          Authorization: `${token}`,
-        },
-      }
-    );
-    return response.data;
-  } catch (error) {
-    console.error("Error adding favorite:", error);
-    throw error;
+    try {
+      const response = await authApi.post<AddFavoriteResponse>(
+        "/favorite",
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      console.error("Error adding favorite:", error);
+      throw error;
+    }
+  } else {
+    throw new Error("Cannot access localStorage on the server side");
   }
 };
 
 export const getFavoritesByUser = async (): Promise<GetFavoritesResponse> => {
-  const token = localStorage.getItem("token");
-  const user = localStorage.getItem("user");
+  if (typeof window !== 'undefined') {
+    const token = localStorage.getItem("token");
+    const user = localStorage.getItem("user");
 
-  if (!token) {
-    throw new Error("No token found in localStorage");
-  }
+    if (!token) {
+      throw new Error("No token found in localStorage");
+    }
 
-  if (!user) {
-    throw new Error("No user found in localStorage");
-  }
+    if (!user) {
+      throw new Error("No user found in localStorage");
+    }
 
-  const userId = JSON.parse(user).uid;
+    const userId = JSON.parse(user).uid;
 
-  try {
-    const response = await authApi.get<GetFavoritesResponse>(
-      `/favorite/usuario/${userId}`,
-      {
-        headers: {
-          Authorization: `${token}`,
-        },
-      }
-    );
-    return response.data;
-  } catch (error) {
-    console.error("Error fetching user favorites:", error);
-    throw error;
+    try {
+      const response = await authApi.get<GetFavoritesResponse>(
+        `/favorite/usuario/${userId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching user favorites:", error);
+      throw error;
+    }
+  } else {
+    throw new Error("Cannot access localStorage on the server side");
   }
 };
 
 export const deleteFavoriteById = async (
   favoriteId: string
 ): Promise<DeleteFavoriteResponse> => {
-  const token = localStorage.getItem("token");
+  if (typeof window !== 'undefined') {
+    const token = localStorage.getItem("token");
 
-  if (!token) {
-    throw new Error("No token found in localStorage");
-  }
+    if (!token) {
+      throw new Error("No token found in localStorage");
+    }
 
-  try {
-    const response = await authApi.delete<DeleteFavoriteResponse>(
-      `/favorite/${favoriteId}`,
-      {
-        headers: {
-          Authorization: `${token}`,
-        },
-      }
-    );
-    return response.data;
-  } catch (error) {
-    console.error("Error deleting favorite:", error);
-    throw error;
+    try {
+      const response = await authApi.delete<DeleteFavoriteResponse>(
+        `/favorite/${favoriteId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      console.error("Error deleting favorite:", error);
+      throw error;
+    }
+  } else {
+    throw new Error("Cannot access localStorage on the server side");
   }
 };
