@@ -1,5 +1,5 @@
 export interface AddFavoriteRequest {
-  userId: string ;
+  userId: string;
   favoriteId: string;
   type: string;
 }
@@ -38,14 +38,13 @@ export interface Favorite {
   uid: string;
 }
 export interface DeleteFavoriteResponse {
-    header: [
-      {
-        error: string;
-        code: number;
-      }
-    ];
-    body: {
-      message: string;
-    };
-  }
-  
+  header: [
+    {
+      error: string;
+      code: number;
+    }
+  ];
+  body: {
+    message: string;
+  };
+}

@@ -1,175 +1,203 @@
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.7); /* Fondo translúcido oscuro */
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 1000;
-  }
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+}
+
+.content {
+  display: flex;
+  width: 70%;
+  max-width: 800px;
+  height: 450px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  flex-direction: row;
+}
+
+.formContainer {
+  flex: 7;
+  padding: 20px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: white;
+}
+
+.form input {
+  padding: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.form input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.form button {
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.infoContainer {
+  flex: 3;
+  background: rgba(38, 38, 38, 0.9);
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 0 10px 10px 0;
+}
+
+.infoText {
+  text-align: center;
+}
+
+.infoImage {
+  margin-top: 20px;
+  max-width: 100%;
+}
+
+.buttons {
+  top: 20px;
+  left: 20px;
+  text-align: center;
+  gap: 10px;
+}
+
+.button {
+  padding: 10px 20px;
+  border: none;
+  background: #262626;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.button.active {
+  background: #F0B90B;
+  color: white;
+  transform: scale(1.1);
+}
+
+.imageLogin {
+  background-image: url('../../../public/images/image-login.svg');
+  width: 100%;
+  height: 100vh;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.imageRegister {
+  background-image: url('../../../public/images/image-register.svg');
+  width: 100%;
+  height: 100vh;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.titleAuth {
+  text-align: center;
+}
+
+.input {
+  background-color: white !important;
+  height: 30px;
+  color: #262626 !important;
+}
+
+.input::placeholder {
+  color: #B0B0B0 !important;
+}
+
+.buttonAuth {
+  background-color: #F0B90B !important;
+  color: #262626 !important;
+  height: 50px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.buttonAuth:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.closeButtonContainer {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  position: absolute;
+}
+
+.closeButton svg {
+  margin-right: 5px;
+}
+
+.spinner {
+  font-size: 16px;
+  margin-right: 8px;
+}
+
+@media (max-width: 425px) {
   .content {
-    display: flex;
-    width: 70%;
-    max-width: 800px;
-    height: 450px;
-    background: rgba(255, 255, 255, 0.15); /* Fondo translúcido blanco */
-    border-radius: 10px;
-    overflow: hidden;
-    backdrop-filter: blur(10px); /* Efecto de desenfoque detrás del contenido */
+    flex-direction: column;
+    width: 90%;
+    height: auto;
   }
-  
+
   .formContainer {
-    flex: 7;
-    padding: 20px;
-  }
-  
-  .form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    color: white;
-  }
-  
-  .form input {
+    flex: 1;
     padding: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.5); /* Bordes translúcidos */
-    border-radius: 5px;
-    background: rgba(255, 255, 255, 0.2); /* Fondo translúcido de los inputs */
-    color: white;
   }
-  
-  .form input::placeholder {
-    color: rgba(255, 255, 255, 0.7); /* Placeholder translúcido */
-  }
-  
-  .form button {
-    padding: 10px;
-    background: rgba(0, 0, 0, 0.6); /* Fondo translúcido negro para el botón */
-    color: #ffffff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
+
   .infoContainer {
-    flex: 3;
-    background: rgba(38, 38, 38, 0.9); /* Fondo translúcido oscuro */
-    color: #ffffff;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    margin: 10px;
-    border-radius: 0 10px 10px 0;
-  }
-  
-  .infoText {
-    text-align: center;
-  }
-  
-  .infoImage {
-    margin-top: 20px;
-    max-width: 100%;
-  }
-  
-  .buttons {
-    top: 20px;
-    left: 20px;
-    text-align: center;
-    gap: 10px;
-  }
-  
-  .button {
-    padding: 10px 20px;
-    border: none;
-    background: #262626;
-    color: white;
-    cursor: pointer;
-    font-size: 16px;
-    border-radius: 5px;
-    transition: background 0.3s, transform 0.3s;
-  }
-  
-  .button.active {
-    background: #F0B90B;
-    color: white;
-    transform: scale(1.1);
+    display: none;
   }
 
-  .imageLogin{
-    background-image: url('../../../public/images/image-login.svg');
-    width: 100%;
-    height: 100vh;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
+  .form {
+    gap: 8px;
   }
 
-  .imageRegister{
-    background-image: url('../../../public/images/image-register.svg');
-    width: 100%;
-    height: 100vh;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
+  .imageLogin,
+  .imageRegister {
+    display: none;
   }
-
-  .titleAuth{
-    text-align: center;
-  }
-
-  .input{
-    background-color: white !important;
-    height: 30px;
-    color: #262626 !important;
-  }
-
-  .input::placeholder{
-    color: #B0B0B0 !important;
-  }
-
-  .buttonAuth{
-    background-color: #F0B90B !important;
-    color: #262626 !important;
-    height: 50px;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .buttonAuth:disabled {
-    cursor: not-allowed;
-    opacity: 0.6;
-  }
-
-  .closeButtonContainer {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-  }
-  
-  .closeButton {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 18px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    position: absolute;
-  }
-  
-  .closeButton svg {
-    margin-right: 5px; 
-  }  
-  .spinner {
-    font-size: 16px;
-    margin-right: 8px;
-  }
+}

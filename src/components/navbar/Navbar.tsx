@@ -1,11 +1,10 @@
-
-'use client';
+"use client";
 import React, { useEffect, useState } from "react";
 import styles from "./Navbar.module.css";
 import Sidebar from "../Sidebar/Sidebar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser, faBars } from "@fortawesome/free-solid-svg-icons"; 
-import useMedia from 'use-media';
+import { faUser, faBars } from "@fortawesome/free-solid-svg-icons";
+import useMedia from "use-media";
 
 const Navbar: React.FC = () => {
   const [firstName, setFirstName] = useState<string | null>(null);
@@ -19,7 +18,7 @@ const Navbar: React.FC = () => {
     setIsSidebarOpen(false);
   };
 
-  const isMobile = useMedia({ maxWidth: '768px' });
+  const isMobile = useMedia({ maxWidth: "768px" });
 
   useEffect(() => {
     const user = localStorage.getItem("user");
@@ -31,31 +30,28 @@ const Navbar: React.FC = () => {
 
   return (
     <>
-    <nav className={styles.navbar}>
-      <button  onClick={toggleSidebar} className={styles.menuButton}>
-        <FontAwesomeIcon icon={faBars} />
-      </button>
-      <div className={styles.icon}></div> {/* Centrado en pantallas pequeñas */}
-      <div className={styles.logoAndLinks}>
-        <span className={styles.link}>Popular</span>
-        <span className={styles.link}>Favorites</span>
-      </div>
-      <div className={styles.userIcon}>
-        {firstName ? (
-          <div>
+      <nav className={styles.navbar}>
+        <button onClick={toggleSidebar} className={styles.menuButton}>
+          <FontAwesomeIcon icon={faBars} />
+        </button>
+        <div className={styles.icon}></div>{" "}
+        {/* Centrado en pantallas pequeñas */}
+        <div className={styles.logoAndLinks}>
+          <span className={styles.link}>Popular</span>
+          <span className={styles.link}>Favorites</span>
+        </div>
+        <div className={styles.userIcon}>
+          {firstName ? (
+            <div>
+              <FontAwesomeIcon icon={faUser} />
+            </div>
+          ) : (
             <FontAwesomeIcon icon={faUser} />
-          </div>
-        ) : (
-          <FontAwesomeIcon icon={faUser} />
-        )}
-      </div>
-    </nav>
-    {isMobile && (
-            <Sidebar isOpen={isSidebarOpen} onClose={closeSidebar} />
           )}
+        </div>
+      </nav>
+      {isMobile && <Sidebar isOpen={isSidebarOpen} onClose={closeSidebar} />}
     </>
-    
-     
   );
 };
 

@@ -117,28 +117,27 @@ export interface User {
 }
 
 export interface UserDeleteResponse {
-    header: [
-      {
-        error: string;
-        code: number;
-      }
-    ];
-    body: [
-      {
-        msg: string;
-        usuario: User;
-      }
-    ];
-  }
-  
-  export interface User {
-    name: string;
-    phone: string;
-    email: string;
-    img: string;
-    role: string;
-    state: boolean;
-    firstName: string;
-    uid: string;
-  }
-  
+  header: [
+    {
+      error: string;
+      code: number;
+    }
+  ];
+  body: [
+    {
+      msg: string;
+      usuario: User;
+    }
+  ];
+}
+
+export interface User {
+  name: string;
+  phone: string;
+  email: string;
+  img: string;
+  role: string;
+  state: boolean;
+  firstName: string;
+  uid: string;
+}

@@ -1,31 +1,31 @@
 .sidebar {
     position: fixed;
     top: 0;
-    left: -100%; /* Mueve el sidebar fuera de la vista a la izquierda */
+    left: -100%;
     width: 70%;
     height: 100%;
     background-color: #262626;
-    transition: left 0.3s ease-in-out; /* Cambia la transición a 'left' */
+    transition: left 0.3s ease-in-out;
     z-index: 10;
     padding: 15px;
 }
-  
+
 .open {
-    left: 0; /* Mueve el sidebar a la vista */
+    left: 0;
 }
-  
+
 @media (min-width: 769px) {
     .sidebar {
         position: relative;
-        left: 0; /* Asegura que el sidebar esté visible en pantallas grandes */
+        left: 0;
         width: 260px !important;
     }
 }
-  
+
 .content {
     flex-direction: column;
 }
-  
+
 .title {
     font-size: 16px;
     line-height: 22px;
@@ -35,8 +35,8 @@
     margin-top: 10px;
     margin-bottom: 10px;
 }
-  
-.input{
+
+.input {
     position: relative;
     background-color: black;
     color: white;
@@ -57,10 +57,11 @@
     padding-left: 10px;
 }
 
-.options{
+.options {
     margin-top: 10px;
 }
-.button{
+
+.button {
     width: 100%;
     bottom: 10px;
     left: 0;

@@ -1,6 +1,7 @@
-'use client';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+"use client";
 import React, { useEffect, useState } from "react";
-import { getUsers } from "../../utils/api"; 
+import { getUsers } from "../../utils/api";
 
 interface FindUserProps {
   onBack: () => void;
@@ -13,7 +14,7 @@ const FindUser: React.FC<FindUserProps> = ({ onBack }) => {
     const fetchUsers = async () => {
       try {
         const response = await getUsers();
-        setUsers(response.body); 
+        setUsers(response.body);
       } catch (error) {
         console.error("Error fetching users:", error);
       }
@@ -33,7 +34,6 @@ const FindUser: React.FC<FindUserProps> = ({ onBack }) => {
           </li>
         ))}
       </ul>
-      {/* Botón para volver a la vista anterior */}
       <button onClick={onBack}>Volver</button>
     </div>
   );

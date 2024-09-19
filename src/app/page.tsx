@@ -1,17 +1,17 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect } from 'react';
-import MovieDetail from './movieDetails/MovieDetails';
-import MovieListPage from './movies/MovieListPage';
-import { Movie } from '../types/movieTypes';
-import Auth from './auth/Auth';
+import React, { useState, useEffect } from "react";
+import MovieDetail from "./movieDetails/MovieDetails";
+import MovieListPage from "./movies/MovieListPage";
+import { Movie } from "../types/movieTypes";
+import Auth from "./auth/Auth";
 
 export default function Home() {
   const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     setIsAuthenticated(!!token);
   }, []);
 
@@ -20,7 +20,12 @@ export default function Home() {
   };
 
   if (selectedMovie) {
-    return <MovieDetail movie={selectedMovie} onBack={() => setSelectedMovie(null)} />;
+    return (
+      <MovieDetail
+        movie={selectedMovie}
+        onBack={() => setSelectedMovie(null)}
+      />
+    );
   }
 
   return (

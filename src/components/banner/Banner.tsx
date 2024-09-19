@@ -12,7 +12,11 @@ const movieIds = [
   831815,
 ];
 
-const Banner: React.FC = () => {
+interface BannerProps {
+  className?: string;
+}
+
+const Banner: React.FC<BannerProps> = () => {
   const [movie, setMovie] = useState<Movie | null>(null);
   const [ratingPercentage, setRatingPercentage] = useState<string>("0%");
 

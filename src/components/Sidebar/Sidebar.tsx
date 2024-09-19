@@ -1,23 +1,24 @@
-'use client';
+/* eslint-disable react-hooks/exhaustive-deps */
+"use client";
 import React, { useEffect, useState } from "react";
-import styles from "./Sidebar.module.css"; 
+import styles from "./Sidebar.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
-import { logout } from '../../utils/api';
+import { logout } from "../../utils/api";
 
 interface SidebarProps {
-  isOpen: boolean;
-  onClose: () => void;
+  isOpen?: boolean;
+  onClose?: () => void;
+  className?: string;
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
-
   const [firstName, setFirstName] = useState<string | null>(null);
-  
+
   const handleOutsideClick = (event: MouseEvent) => {
     const sidebarElement = document.getElementById("sidebar");
     if (sidebarElement && !sidebarElement.contains(event.target as Node)) {
-      onClose();
+      onClose?.();
     }
   };
 
@@ -42,17 +43,20 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
 
   const handleLogout = async () => {
     try {
-      await logout(); 
-      alert('Sesión cerrada correctamente.');
+      await logout();
+      alert("Sesión cerrada correctamente.");
       window.location.reload();
     } catch (error) {
-      console.error('Error durante el logout:', error);
-      alert('Hubo un problema al cerrar sesión.');
+      console.error("Error durante el logout:", error);
+      alert("Hubo un problema al cerrar sesión.");
     }
   };
 
   return (
-    <aside id="sidebar" className={`${styles.sidebar} ${isOpen ? styles.open : ""}`}>
+    <aside
+      id="sidebar"
+      className={`${styles.sidebar} ${isOpen ? styles.open : ""}`}
+    >
       <div className={styles.content}>
         <div className={styles.title}>
           <label>Hola, {firstName}</label>

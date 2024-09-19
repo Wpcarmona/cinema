@@ -1,15 +1,15 @@
 .moviesContainer {
     display: flex;
     gap: 16px;
-    overflow-x: auto; /* Permitir scroll horizontal */
+    overflow-x: auto;
     padding: 16px;
     scroll-behavior: smooth;
     margin-bottom: 10px;
-    white-space: nowrap; /* Evitar que las tarjetas se ajusten en varias líneas */
+    white-space: nowrap;
 }
 
 .moviesContainer::-webkit-scrollbar {
-    display: none; /* Ocultar scrollbar en navegadores basados en WebKit */
+    display: none;
 }
 
 .contentMain {
@@ -17,7 +17,7 @@
     padding-top: 20px;
     padding-left: 16px;
     padding-right: 16px;
-    overflow-x: hidden; /* Asegurar que no haya overflow en el contenedor principal */
+    overflow-x: hidden;
 }
 
 .titleName {
@@ -29,25 +29,25 @@
     color: #FFFFFF;
 }
 
-/* Media queries para pantallas más pequeñas */
+
 @media (max-width: 768px) {
     .moviesContainer {
         gap: 12px;
-        padding: 8px; /* Menos padding en pantallas más pequeñas */
+        padding: 8px;
     }
 
     .titleName {
-        font-size: 20px; /* Reducir tamaño de fuente */
+        font-size: 20px;
     }
 }
 
 @media (max-width: 480px) {
     .moviesContainer {
         gap: 8px;
-        padding: 4px; /* Aún menos padding en móviles */
+        padding: 4px;
     }
 
     .titleName {
-        font-size: 18px; /* Más pequeño en pantallas móviles */
+        font-size: 18px;
     }
 }

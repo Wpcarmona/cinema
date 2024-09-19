@@ -49,7 +49,6 @@ const MovieDetail: React.FC<MovieDetailProps> = ({ movie, onBack }) => {
                 alt={movie.title}
                 className={styles.coverImage}
               />
-              
             </div>
             <button className={styles.trailerButton}>Official Trailer</button>
           </div>

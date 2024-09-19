@@ -38,8 +38,6 @@
   text-align: left;
 }
 
-/* src/components/RatingBox.module.css */
-
 .container {
   display: flex;
   align-items: center;

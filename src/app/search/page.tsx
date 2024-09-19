@@ -1,11 +1,12 @@
-import React, { useState} from 'react';
-import { searchMovies } from '../../utils/api';
-import {MovieCard} from '../../components/index';
-import { Movie } from '../../types/movies';
-import styles from './search.module.css';
+"use client";
+import React, { useState } from "react";
+import { searchMovies } from "../../utils/api";
+import MovieCard from "../../components/movieCard/MovieCard";
+import { Movie } from "../../types/movieTypes";
+import styles from "./search.module.css";
 
 const SearchPage: React.FC = () => {
-  const [query, setQuery] = useState<string>('');
+  const [query, setQuery] = useState<string>("");
   const [movies, setMovies] = useState<Movie[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -28,17 +29,28 @@ const SearchPage: React.FC = () => {
           onChange={(e) => setQuery(e.target.value)}
           className={styles.input}
         />
-        <button type="submit" className={styles.button}>Buscar</button>
+        <button type="submit" className={styles.button}>
+          Buscar
+        </button>
       </form>
 
       {loading && <p>Cargando...</p>}
 
       <div className={styles.movieGrid}>
-        {movies.length > 0 ? (
-          movies.map((movie) => <MovieCard key={movie.id} movie={movie} />)
-        ) : (
-          !loading && <p>No se encontraron resultados.</p>
-        )}
+        {movies.length > 0
+          ? movies.map((movie) => (
+              <MovieCard
+                key={movie.id}
+                movie={movie}
+                onClick={function (): void {
+                  throw new Error("Function not implemented.");
+                }}
+                onClickFavorite={function (): void {
+                  throw new Error("Function not implemented.");
+                }}
+              />
+            ))
+          : !loading && <p>No se encontraron resultados.</p>}
       </div>
     </div>
   );

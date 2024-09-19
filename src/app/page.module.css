@@ -3,21 +3,21 @@
     gap: 16px;
     overflow-x: auto;
     padding: 16px;
-    scroll-behavior: smooth; 
+    scroll-behavior: smooth;
     margin-bottom: 10px;
 }
-  
+
 .moviesContainer::-webkit-scrollbar {
     display: none;
 }
 
-.contentMain{
+.contentMain {
     background-color: #414141;
     padding-top: 20px;
-    
+
 }
 
-.titleName{
+.titleName {
     margin-left: 16px;
     font-size: 24px;
     font-weight: 700;
@@ -25,4 +25,3 @@
     text-align: left;
     color: #FFFFFF;
 }
-  
