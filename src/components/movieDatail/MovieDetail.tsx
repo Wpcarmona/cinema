@@ -12,7 +12,7 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ movie }) => {
 
   return (
     <div className={styles.container}>
-      <Image src={imageUrl} alt={movie.title} className={styles.poster} />
+      <Image src={imageUrl} alt={movie.title} className={styles.poster} fill />
       <div className={styles.info}>
         <h1 className={styles.title}>{movie.title}</h1>
         <p className={styles.genres}>

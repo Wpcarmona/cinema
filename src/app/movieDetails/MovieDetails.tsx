@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import React, { useEffect, useState } from "react";
 import { Movie } from "../../types/movieTypes";
@@ -6,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faHeart } from "@fortawesome/free-solid-svg-icons";
 import { getMoviesByPath } from "../../utils/api";
 import RecomendationCard from "../../components/recomendationCard/RecomendationCard";
+import Image from "next/image"; // Importa el componente de Next.js
 
 interface MovieDetailProps {
   movie: Movie;

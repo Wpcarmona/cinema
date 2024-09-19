@@ -1,7 +1,7 @@
+/* eslint-disable @next/next/no-img-element */
 import React from "react";
 import styles from "./RecomendationCard.module.css";
 import { Movie } from "../../types/movieTypes";
-import Image from "next/image";
 
 interface RecomendationCardProps {
   movie: Movie;
@@ -12,7 +12,7 @@ const RecomendationCard: React.FC<RecomendationCardProps> = ({ movie }) => {
 
   return (
     <div className={styles.card}>
-      <Image src={imageUrl} alt={movie.title} className={styles.poster} />
+      <img src={imageUrl} alt={movie.title} className={styles.poster} />
       <div className={styles.containerBox}>
         <h2 className={styles.title}>{movie.title}</h2>
       </div>
