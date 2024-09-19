@@ -1,0 +1,135 @@
+.detailContainer {
+    position: relative;
+    border-image: fill 0 linear-gradient(#0001, #000);
+}
+
+.banner {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    height: 600px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    border-image: fill 0 linear-gradient(#0001, #000);
+}
+
+.backButton {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 24px;
+    border-radius: 50%;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.backButton:hover {
+    background: transparent;
+}
+
+.content {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.leftContent {
+    flex: 0 0 300px;
+    position: relative;
+}
+
+.coverContainer {
+    position: relative;
+}
+
+.coverImage {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.trailerButton {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    background-color: #f0ad4e;
+    color: #000;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.rightContent {
+    flex: 1;
+    margin-left: 20px;
+    color: #fff;
+}
+
+.title {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.releaseDate,
+.duration {
+    font-size: 1.2em;
+}
+
+.overviewTitle {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.description {
+    margin-bottom: 20px;
+}
+
+.ratingContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.rating {
+    border: 7px solid #4DA14F;
+    border-radius: 50%;
+    width: 95px;
+    height: 95px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    color: #ffffff;
+}
+
+.heartIcon {
+    color: white;
+    width: 30px;
+    height: 30px;
+}
+
+.topRatedSection {
+    padding: 20px;
+    background-color: #414141;
+}
+
+.topRatedTitle {
+    color: #FFFFFF;
+    margin-bottom: 15px;
+}
+
+.topRatedContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}

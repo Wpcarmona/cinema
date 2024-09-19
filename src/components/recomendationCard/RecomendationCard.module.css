@@ -1,0 +1,109 @@
+.card {
+    width: 200px;
+    height: auto;
+    border-radius: 8px;
+    gap: 12px;
+    background-color: #262626;
+    transition: transform 0.3s ease;
+    padding-bottom: 10px;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.poster {
+    width: 200px;
+    height: 223px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.title {
+    width: 184px;
+    height: 20px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 20px;
+    margin: 0.5rem 0;
+    color: #F6F6F6;
+}
+
+.releaseDate {
+    font-family: 'Inter', sans-serif;
+    color: #F6F6F6;
+    font-size: 9px;
+    font-weight: 400;
+    line-height: 10px;
+    text-align: left;
+}
+
+/* src/components/RatingBox.module.css */
+
+.container {
+    display: flex;
+    align-items: center;
+    width: 184px;
+    height: 45px;
+    gap: 2px;
+    justify-content: center;
+}
+
+.label {
+    display: block;
+    text-align: center;
+    font-size: 9px;
+    margin-bottom: 4px;
+    color: #F6F6F6;
+}
+
+.contentRating {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+}
+
+.rating {
+    border: 2px solid #4DA14F;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    color: #ffffff;
+}
+
+.favoriteButton {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.heartIcon {
+    color: white;
+    width: 22px;
+    height: 19px;
+    margin-top: 5px;
+}
+
+.containerBox {
+    width: Fill;
+    padding: 0px 8px 8px 8px;
+    gap: 8px;
+    opacity: 0px;
+}
+
+.divider {
+    width: 20px;
+}

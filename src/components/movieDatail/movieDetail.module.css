@@ -1,0 +1,33 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}
+
+.poster {
+  width: 300px;
+  height: auto;
+}
+
+.info {
+  max-width: 600px;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.genres {
+  color: #666;
+}
+
+.releaseDate,
+.rating {
+  font-weight: bold;
+}
+
+.overview {
+  margin-top: 1rem;
+  line-height: 1.6;
+}
